@@ -1,15 +1,3 @@
-def is_palindrome?(number)
-  if ((number.length == 2 && number[0] == number[1]) || number.length == 1)
-    return true
-  elsif (number[0] == number[-1])
-    number.delete_at(0)
-    number.delete_at(-1)
-    is_palindrome?(number)
-  else
-    return false
-  end
-end
-
 array_one = [*101..999]
 array_two = [*101..999]
 
@@ -20,5 +8,5 @@ array_one.each do |num1|
   end
 end
 
-all_products.keep_if { |num| (is_palindrome?(num.to_s.split(''))) }
+all_products.keep_if { |number| number.to_s == number.to_s.reverse }
 p all_products.max
