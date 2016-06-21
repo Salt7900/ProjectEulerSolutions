@@ -4,7 +4,6 @@ Each problem is in it's own directly, and each directory may have the solution i
 
 My goals for these are to reinforce skills from languages and to pick up some new ones. Currently I have my eyes set on:
 + Reinforcing *Ruby*
-+ Continuing to learn vanilla *JavaScript*
 + Picking up more *Python*
 + Learning a "classic" language, in this case *C++*
 + Working with something from another paradigm, *Clojure*
