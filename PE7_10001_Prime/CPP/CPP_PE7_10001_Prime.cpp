@@ -1,5 +1,7 @@
 #include <iostream>
 #include <vector>
+#include <stdio.h>
+#include <time.h>
 using namespace std;
 
 bool is_prime(int number_to_check){
@@ -17,6 +19,10 @@ bool is_prime(int number_to_check){
 };
 
 int main(){
+  clock_t t;
+  int f;
+  t = clock();
+
   std::vector<int> primes;
   int number_check = 2;
   while(primes.size()<10001){
@@ -27,4 +33,8 @@ int main(){
   };
   cout << primes.size() << endl;
   std::cout << primes.back() << std::endl;
+
+  t = clock() - t;
+  printf ("It took me %d clicks (%f seconds).\n",t,((float)t)/CLOCKS_PER_SEC);
+  return 0;
 };
