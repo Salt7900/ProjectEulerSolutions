@@ -5,23 +5,28 @@
 #include <fstream>
 using namespace std;
 
-void sieve(int number_to) {
-  int numberToSqRt = (int)sqrt((double)number_to);
+std::vector<int> sieve(int numberTo) {
   std::vector<int> primes;
-  std::vector<bool> possible_primes;
-
-  for(int counter = 0; counter < numberToSqRt; counter++){
-    if(possible_primes[counter]){
-      for(int i = counter*counter; i < possible_primes.size(); i++)
-        possible_primes[i] = false;
-    };
+  bool *possible_primes = new bool[numberTo + 1];
+  for (int counter = 2; counter < numberTo + 1; counter ++) {
+      possible_primes[counter] = true;
   };
-
-  for(int counter = 0; counter < 10; counter++){
-    cout << possible_primes[counter] << endl;
-  }
-
+  for (int i = 2; i * i < numberTo; i ++) {
+      if (possible_primes[i]) {
+          for (int j = i * i; j < numberTo; j += i) {
+              possible_primes[j] = false;
+          };
+      };
+  };
+  int cnt = 0;
+  for (int i = 2; i < numberTo; i ++) {
+      if (possible_primes[i]) {
+          primes.push_back(i);
+      };
+  };
+  return primes;
 };
+
 
 
 int main(){
@@ -29,20 +34,15 @@ int main(){
   int f;
   t = clock();
 
-  // std::vector<int> primes_array = sieve(10);
-  // for(int counter = 0; counter<primes_array.size(); counter++){
-  //   if(primes_array[counter] != false){
-  //     cout<<primes_array[counter]<<endl;
-  //   };
-  // };
+  long long int count = 0;
+  std::vector<int> number = sieve(2000000);
+  for(int i=0; i<number.size(); i++){
+    count += number[i];
+  };
 
+  cout << count << endl;
 
-  sieve(10);
-  // for(int i=0; i<v.size(); i++){
-  //   cout << v[i] << endl;
-  // }
-
-  // t = clock() - t;
-  // printf ("It took me %d clicks (%f seconds).\n",t,((float)t)/CLOCKS_PER_SEC);
-  // return 0;
+  t = clock() - t;
+  printf ("It took me %d clicks (%f seconds).\n",t,((float)t)/CLOCKS_PER_SEC);
+  return 0;
 };
