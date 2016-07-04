@@ -1,3 +1,5 @@
+require 'benchmark'
+
 def sieve(number_to)
   possible_primes = Array.new(number_to, true)
   possible_primes[0] = false
@@ -13,6 +15,10 @@ def sieve(number_to)
   return
 end
 
-sum = 0
-sieve(2000000) {|output| sum += output}
-p sum
+Benchmark.bm do |bm|
+    bm.report do
+    sum = 0
+    sieve(2000000) {|output| sum += output}
+    p sum
+  end
+end
